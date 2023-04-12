@@ -1,8 +1,11 @@
+'''      code done by Fips5, 
+        https://github.com/Fips5        '''
+
 import os
 from openpyxl import load_workbook
 
 while True:
-    dir_path = "./files"
+    dir_path = "./files"        #       CHANGE THE PATH FOR THE FOLDER YOU HAVE, PUT THE SPECIFIC PATH
 
     xlsx_files = [f for f in os.listdir(dir_path) if f.endswith(".xlsx")]
 
