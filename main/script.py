@@ -1,17 +1,16 @@
-from openpyxl.utils import get_column_letter, column_index_from_string
-from openpyxl import Workbook, load_workbook
+import os
+from openpyxl import load_workbook
 
-row_input = input("Enter row number: ")
+dir_path = "./files"
 
-col_input = input("Enter column letter: ")
+xlsx_files = [f for f in os.listdir(dir_path) if f.endswith(".xlsx")]
 
-col_index = column_index_from_string(col_input)
+row_num = int(input("Enter the row number: "))
+col_letter = input("Enter the column letter: ")
 
-cell_input = f"{get_column_letter(col_index)}{row_input}"
-
-wb = load_workbook("test.xlsx")
-ws = wb.active
-
-cell_value = ws[cell_input].value
-
-print(f"Cell {cell_input}: {cell_value}")
+for filename in xlsx_files:
+    filepath = os.path.join(dir_path, filename)
+    workbook = load_workbook(filepath)
+    sheet = workbook.active
+    cell = sheet["{}{}".format(col_letter, row_num)]
+    print("{}: {}".format(filename, cell.value))
